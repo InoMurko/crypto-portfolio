@@ -88,6 +88,7 @@ class Prices
     puts "ETH".green
     print "Kraken: $#{'%.2f' % kraken.price_usd}"
     print " #{'%.2f' % kraken.price_eur}€".yellow
+    print " #{'%.2f' % kraken.price_gbp}£".yellow
     puts prices.get_change(:eth, kraken.price_usd)
     prices.set(:eth, kraken.price_usd)
   end

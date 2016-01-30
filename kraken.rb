@@ -13,10 +13,14 @@ class Kraken
     @price_eur ||= prices['XETHZEUR']['a'][0].to_f
   end
 
+  def price_gbp
+    @price_gbp ||= prices['XETHZGBP']['a'][0].to_f
+  end
+
 private
 
   def prices
-    @prices ||= conn.get('Ticker', pair: 'ETHEUR, ETHUSD').body['result']
+    @prices ||= conn.get('Ticker', pair: 'ETHEUR, ETHUSD, ETHGBP').body['result']
   end
 
   def conn
