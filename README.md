@@ -30,7 +30,7 @@ first one is used to show the aggregate portfolio value.
 
 ## Currency converter
 
-    ruby convert.rb
+    ruby convert.rb "30 eur in btc"
 
 ### Example
 

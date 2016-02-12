@@ -1,12 +1,21 @@
+#!/usr/bin/env ruby
 require 'readline'
 require 'colorize'
+require_relative 'util'
 require_relative 'currency_converter'
 
-Readline.readline("Query (ex. 50 usd in btc): ", true).strip.downcase =~ /(\d+)\s*(.*?)\s+in\s+(.*?)$/
-amount = $1.to_i
+input = ARGV[0] ? ARGV[0] : Readline.readline("Query (ex. 50 usd in btc): ", true)
+input.strip.downcase =~ /([\d\.]+)\s*(.*?)\s+(?:(?:in|to)\s+)?(.*?)$/
+
+amount = $1.to_f
 from = $2.to_sym
 to = $3.to_sym
 
-converter = CurrencyConverter.new
-converted = amount * converter.ratio(from, to)
-puts "#{amount} #{from} = #{'%0.2f' % converted} #{to}".yellow
+# DEBUG
+log "Amount: #{amount}"
+log "From: #{from}"
+log "To: #{to}"
+
+converted = amount * CurrencyConverter.new.ratio(from, to)
+print "#{amount} #{from} = "
+puts "#{'%0.2f' % converted} #{to}".yellow
