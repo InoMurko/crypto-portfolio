@@ -5,6 +5,7 @@ require_relative 'currency'
 require_relative 'currency_converter'
 require_relative 'prices'
 require_relative 'portfolio'
+require_relative 'providers/bitmex'
 
 prices = Prices.new
 basis = Config.load["basis"] || Currency::USD
