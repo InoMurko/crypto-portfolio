@@ -1,29 +1,30 @@
-require_relative 'connection'
+require_relative 'provider'
 
 class Kraken
 
   API_BASE = "https://api.kraken.com/0/public/"
 
   def eth_to_usd
-    @price_usd ||= prices['XETHZUSD']['a'][0].to_f
+    @eth_to_usd ||= prices['XETHZUSD']['b'][0].to_f
   end
 
-  # def price_eur
-  #   @price_eur ||= prices['XETHZEUR']['a'][0].to_f
-  # end
+  def eth_to_btc
+    @btc_to_eth ||= prices['XETHXXBT']['b'][0].to_f
+  end
+
+  def eth_to_eur
+    @eth_to_usd ||= prices['XETHZUSD']['b'][0].to_f
+  end
 
 private
 
   def prices
-    @prices ||= conn.get('Ticker', pair: 'ETHEUR, ETHUSD, ETHGBP').body['result']
+    #return conn.get('Ticker', pair: 'ETHEUR, ETHUSD, ETHGBP, ETHXBT').body['result']
+    @prices ||= conn.get('Ticker', pair: 'ETHEUR, ETHUSD, ETHGBP, ETHXBT').body['result']
   end
 
   def conn
-    @conn ||= Connection.new(API_BASE) do |conn|
-      conn.request :json
-      conn.response :json, :content_type => /\bjson$/
-      conn.adapter Connection.default_adapter
-    end
+    @conn ||= Provider.new(API_BASE).conn
   end
 
 end

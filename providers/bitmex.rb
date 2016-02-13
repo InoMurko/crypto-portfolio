@@ -1,4 +1,4 @@
-require_relative 'connection'
+require_relative 'provider'
 
 class Bitmex
 
@@ -23,11 +23,7 @@ private
   end
 
   def conn
-    @conn ||= Connection.new(API_BASE) do |conn|
-      conn.request :json
-      conn.response :json, :content_type => /\bjson$/
-      conn.adapter Connection.default_adapter
-    end
+    @conn ||= Provider.new(API_BASE).conn
   end
 
 end

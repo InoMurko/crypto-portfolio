@@ -5,7 +5,10 @@ class Connection
 
   def initialize(api_base, &block)
     @api_base = api_base
-    @conn ||= Faraday.new(api_base, &block)
+    @conn = Faraday.new(api_base, &block)
+    @conn.request :json
+    @conn.response :json, :content_type => /\bjson$/
+    @conn.adapter Connection.default_adapter
   end
 
   def self.default_adapter
@@ -18,14 +21,13 @@ class Connection
 
 end
 
-# Identity
 class FakeConnection
 
   def initialize(api_base, &block)
   end
 
   def get(path)
-    10
+    1
   end
 
 end

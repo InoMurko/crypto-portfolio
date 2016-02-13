@@ -7,7 +7,8 @@ require_relative 'prices'
 require_relative 'portfolio'
 
 prices = Prices.new
-converter = CurrencyConverter.new
+basis = Config.load["basis"] || Currency::USD
+converter = CurrencyConverter.new(basis)
 
 # Show current prices and price changes
 

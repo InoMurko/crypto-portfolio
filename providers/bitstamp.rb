@@ -1,4 +1,4 @@
-require_relative 'connection'
+require_relative 'provider'
 
 class Bitstamp
 
@@ -8,22 +8,18 @@ class Bitstamp
     @price_usd ||= conn.get('ticker/').body['last'].to_f
   end
 
+  def btc_to_eur
+    btc_to_usd / eur_to_usd
+  end
+
   def eur_to_usd
     @ratio ||= conn.get('eur_usd/').body['buy'].to_f
   end
 
-  # def price_eur
-  #   @price_eur ||= convert_usd_eur(price_usd)
-  # end
-
 private
 
   def conn
-    @conn ||= Connection.new(API_BASE) do |conn|
-      conn.request :json
-      conn.response :json, :content_type => /\bjson$/
-      conn.adapter Connection.default_adapter
-    end
+    @conn ||= Provider.new(API_BASE).conn
   end
 
 end

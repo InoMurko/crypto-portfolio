@@ -9,4 +9,7 @@ crypto:
 # only fiat without fake connection
 currencies: usd, eur, gbp
 
+# basis for conversions, can be usd or btc
+basis: usd
+
 futures: false

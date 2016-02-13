@@ -8,6 +8,10 @@ class Krompir
     1
   end
 
+  def krm_to_btc
+    1
+  end
+
 private
 
   def conn
