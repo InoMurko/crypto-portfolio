@@ -22,6 +22,9 @@ class Portfolio
           puts "#{currency.to_s.upcase}: #{Currency.format(sums[currency].round)} (#{(100.0 * sums[currency] / total).round}%)" if sums[currency]
         end
         puts "Sum: #{Currency.format(total.round)}".yellow
+        puts "Invested: #{Config.load['invested']}".yellow
+        invested = total.round - Config.load['invested'].split('£')[0].to_i
+        puts "Diff: #{invested}£".yellow
       end
     end
   end

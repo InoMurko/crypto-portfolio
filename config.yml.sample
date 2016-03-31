@@ -4,7 +4,7 @@ crypto:
   btc:
     amount: 1
   eth:
-    amount: 100
+    amount: 10
 
 # only fiat without fake connection
 currencies: usd, eur, gbp
@@ -13,3 +13,5 @@ currencies: usd, eur, gbp
 basis: usd
 
 futures: false
+
+invested: 10£
