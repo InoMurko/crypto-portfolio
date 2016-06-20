@@ -7,7 +7,7 @@ class Bitmex
   def mark_price
     @mark_price ||= conn.get('instrument/indices').body[0]['markPrice']
   end
-
+=begin
   def bid_price
     '%.2f' % bid_ask['bidPrice'].to_f
   end
@@ -15,7 +15,7 @@ class Bitmex
   def ask_price
     '%.2f' % bid_ask['askPrice'].to_f
   end
-
+=end
 private
 
   def bid_ask

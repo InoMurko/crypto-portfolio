@@ -29,8 +29,8 @@ if Config.load['futures']
   puts
   puts "Bitmex".green
   puts "Mark: $#{bitmex.mark_price}"
-  puts "Bid XBT24H: $#{bitmex.bid_price}"
-  puts "Ask XBT24H: $#{bitmex.ask_price}"
+#  puts "Bid XBT24H: $#{bitmex.bid_price}"
+#  puts "Ask XBT24H: $#{bitmex.ask_price}"
 end
 
 puts "\nETH".green
